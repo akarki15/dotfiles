@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="kardan"
+ZSH_THEME="theunraveler"
 
 export GOPATH=/Users/aashishkarki/Documents/gowork
 
@@ -84,14 +84,6 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/loca
 
 alias 'ls'='ls -AF -G'
 alias 'git st'='git status'
-psh(){
-	hg commit -m $*
-	hg push
-}
-alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
-ja(){
-	javac $*
-}
+alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+
