@@ -73,4 +73,7 @@ nnoremap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
+" ctrlp
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+set mouse=a
