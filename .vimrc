@@ -15,7 +15,14 @@ execute pathogen#helptags()
 " set statusline+=%c,     "cursor column
 " set statusline+=%l/%L   "cursor line/total lines
 " set statusline+=\ %P    "percent through file
-       
+
+" Airline
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -61,15 +68,6 @@ inoremap jk <esc>		" jk is escape
 
 " NERDTree Shortcut
 map <C-n> :NERDTreeToggle<CR>
-" Save shortcut 
-nmap <C-s> :w <CR>
-imap <C-s> <esc>:w <CR>
-
-" Split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
@@ -77,3 +75,13 @@ set splitright
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 set mouse=a
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" Switch to alternate file
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
