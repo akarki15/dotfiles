@@ -1,0 +1,2 @@
+FATAL:  data directory "/usr/local/var/postgres" has group or world access
+DETAIL:  Permissions should be u=rwx (0700).

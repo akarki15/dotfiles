@@ -4,10 +4,12 @@
 export PATH="$PATH:$HOME/.rvm/bin"
 # gillnet_repo settings
 export GOPATH="$HOME/gillnet_repo/go"
+#export GOBIN="$GOPATH/bin"
 export PATH="$(go env GOROOT)/bin:$GOPATH/bin:$PATH"
 export PATH="$(go env GOTOOLDIR):$PATH"
-export GOBIN=""
 export DOCKER_HOST='tcp://localhost:2375'
+# Postgres binary
+export PATH=/Library/PostgreSQL/9.4/bin:$PATH
 
 # gowork folder settings
 #  export GOPATH="$HOME/work"
@@ -23,7 +25,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
+ZSH_THEME="tjkirch"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -103,11 +105,20 @@ alias 'git st'='git status'
 alias 'cls'='clear'
 
 alias 'chk'='make check'
-alias 'int'='make integration-test | tee ~/mad'
+alias 'int'=intTest
 alias 'got'=gotest
 alias 'last'='echo $?'
 
-echo "zshrc Loaded"
+alias 'moo'='fortune -s computers | cowsay'
+
+agHistory(){
+	if [ ! -z "$1" ]
+	then
+		echo 'history | ag '$1
+		history | ag $1
+	fi
+}
+alias 'agh'=agHistory
 
 gotest(){
 	if [ ! -z "$1" ] && [ ! -z "$2" ]
@@ -121,6 +132,21 @@ gotest(){
 	else
 		echo 'Unit testing all packages'
 		go test ./...
+	fi
+}
+
+intTest(){
+	if [ ! -z "$1" ] && [ ! -z "$2" ]
+	then
+		echo 'Int testing '$2' in '$1
+		./docker-integration-test.sh  $1/integration -integration -test.run="$2"
+	elif [ ! -z "$1" ]
+	then
+		echo 'Int testing package: '$1
+		./docker-integration-test.sh  $1/integration -integration -p=1
+	else
+		echo 'Int testing all packages'
+		make integration-test
 	fi
 }
 
@@ -150,5 +176,4 @@ alias vi='nvim'
 # bindkey '^R' history-incremental-search-backward
 # export KEYTIMEOUT=1
 
-
-
+alias gl='git log --all --decorate --oneline --graph'

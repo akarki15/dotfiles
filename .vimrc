@@ -2,89 +2,24 @@
 " pathogen settings. Don't exactly know what it is doing. Just copied it from http://vimawesome.com/plugin/syntastic#settings
 execute pathogen#infect()
 execute pathogen#helptags()
-" Statusbar 
-
-" always display statusline
- set laststatus=2
-" set statusline=
-" set statusline +=%1*\ %n\ %*            "buffer number
-" set statusline +=%5*%{&ff}%*            "file format
-" set statusline +=%3*%y%*                "file type
-" set statusline +=%4*\ %<%F%*            "full path
-" set statusline +=%2*%m%*                "modified flag
-" set statusline +=%1*%=%5l%*             "current line
-" set statusline +=%2*/%L%*               "total lines
-" set statusline +=%1*%4v\ %*             "virtual column number
-" set statusline +=%2*0x%04B\ %*          "character under cursor
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" hightlight whitespace
-match ErrorMsg '\s\+$'
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Lightline configs
-
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
-      \ }
-      \ }
-function! LightLineFilename()
-	  return expand('%:p')
-  endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic check
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-" Use pylint to check python code
-" let g:syntastic_python_checkers = ['pylint', 'python'] 
-" let g:syntastic_javascript_checkers = ['jshint']
-" " " " " " " " " " " " " " " " " " " " " " " " " " " " " 
-"
-" Theme
-syntax on
-set background=light
-let g:solarized_termtrans = 1
-" colorscheme solarized
-
-
-" set expandtab       " tabs are spaces
-
+" Statusbar
+set laststatus=2 	" always display statusline
+match ErrorMsg '\s\+$' 	" hightlight whitespace
 set number              " show line numbers
 set relativenumber 	" use relative line numbers instead of absolute
-
 set showcmd             " show command in bottom bar
-
-"set cursorline          " highlight current line
-
 filetype indent on      " load filetype-specific indent files
-
 set showmatch           " highlight matching [{()}]
-
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-
-inoremap jk <esc>		" jk is escape
-
-" " " " " " " " " " " " " " " " " " " " " " " " " " " " "
-" Convert tabs to 4 spaces
-" set tabstop=4
-" set shiftwidth=4
-" set expandtab
-
-" " " " " " " " " " " " " " " " " " " " " " " " " " " " "
-" NERDTree Shortcut
-map <C-n> :NERDTreeToggle<CR>
-
-set splitbelow
-set splitright
-" ctrlp
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
+syntax on
+inoremap jk <esc>	" jk is escape
 set mouse=a
+filetype plugin on
+let mapleader=","	" Set leader
+set clipboard=unnamed 	" Mac clipboard sharing
+set fillchars+=vert:\ 	" Remove | from vertical divider
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -92,36 +27,38 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-" Switch to alternate file
-" map <C-Tab> :bnext<cr>
-" map <C-S-Tab> :bprevious<cr>
+set splitbelow
+set splitright
 
-" vim-go settings
-" map <C->
-" Highlight
+" ctrlp
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+" Nerdcommenter
 filetype plugin on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nvim
+" escape from terminal
+tnoremap <Esc> <C-\><C-n>
 
-" g:neocompete#enable_at_startup = 1
+if !has('nvim')
+	set ttymouse=xterm2
+endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree Shortcut
+map <C-n> :NERDTreeToggle<CR>
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 1
-" Set leader
-let mapleader=","
-"alias to go import
-nnoremap <Leader>y :GoImports<CR> 
-
-" 80 char line
-
-" Mappings to access buffers (don't use "\p" because a
-" " delay before pressing "p" would accidentally paste).
-" " \l       : list buffers
-" " \b \f \g : go back/forward/last-used
-" " \1 \2 \3 : go to buffer 1/2/3 etc
+" Open current file in nerdtree
+nmap <Leader>n :NERDTreeFind<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lightline configs
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bufferline
+ let g:bufferline_rotate = 2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" buffer nav
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
 nnoremap <Leader>f :bn<CR>
@@ -137,6 +74,20 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 nnoremap <Leader>d :bd<CR>
+set hidden 	" Set buffers hidden so that I can switch to another buffer without vim yelling at me
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Golang
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_build_constraints = 1
+let g:go_auto_type_info = 0
+
+nnoremap <Leader>c :GoErrCheck<CR>
+nnoremap <Leader>y :GoImports<CR>
 
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
@@ -153,24 +104,4 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>i <Plug>(go-info)
 " Rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
-
-" Open current file in nerdtree
-nmap <Leader>n :NERDTreeFind<CR>
-
-" Set buffers hidden so that I can switch to another buffer without vim
-" yelling at me
-set hidden
-" tabline settings
-hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
-
-if !has('nvim')
-	set ttymouse=xterm2
-endif
-
-" Mac clipboard sharing
-set clipboard=unnamed
-
-" Nerdcommenter
-filetype plugin on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
