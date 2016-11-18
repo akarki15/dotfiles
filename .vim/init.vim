@@ -1,1 +1,0 @@
-/Users/aashishkarki/.vimrc
