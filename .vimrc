@@ -90,6 +90,7 @@ nnoremap <Leader>c :GoErrCheck<CR>
 nnoremap <Leader>a :GoAlternate<CR>
 nnoremap <Leader>y :GoImports<CR>
 nnoremap <Leader>t :GoTestFunc<CR>
+nnoremap <Leader>p :CtrlPBuffer<CR>
 
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>

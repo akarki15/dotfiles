@@ -173,4 +173,4 @@ alias vi='nvim'
 # bindkey '^R' history-incremental-search-backward
 # export KEYTIMEOUT=1
 
-alias gl='git log -all --decorate --oneline --graph'
+alias gl='git log --decorate --oneline --graph'
