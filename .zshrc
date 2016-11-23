@@ -152,8 +152,8 @@ alias gb='git branch'
 alias gs='git status'
 alias gc='git checkout'
 alias ga='git add'
-alias gd='git diff'
-alias gdc='git diff --cached'
+alias gd='git diff --word-diff'
+alias gdc='git diff --word-diff --cached'
 
 alias refresh_db="$GOPATH/../script/yml2env.sh $GOPATH/bin/pgtos3cmd -action=restore"
 alias pg='pgcli gillnet_prod'
