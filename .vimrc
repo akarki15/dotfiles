@@ -91,6 +91,7 @@ nnoremap <Leader>a :GoAlternate<CR>
 nnoremap <Leader>y :GoImports<CR>
 nnoremap <Leader>t :GoTestFunc<CR>
 nnoremap <Leader>p :CtrlPBuffer<CR>
+nnoremap <Leader>i :GoInfo<CR>
 
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
@@ -106,4 +107,3 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>i <Plug>(go-info)
 " Rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
