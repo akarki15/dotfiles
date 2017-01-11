@@ -154,6 +154,8 @@ alias gc='git checkout'
 alias ga='git add'
 alias gd='git diff --word-diff'
 alias gdc='git diff --word-diff --cached'
+alias gl='git log --decorate --oneline --graph --color=always'
+alias glf='watch --color git log --decorate --oneline --graph --color=always'
 
 alias refresh_db="$GOPATH/../script/yml2env.sh $GOPATH/bin/pgtos3cmd -action=restore"
 alias pg='pgcli gillnet_prod'
@@ -173,7 +175,6 @@ alias vi='nvim'
 # bindkey '^R' history-incremental-search-backward
 # export KEYTIMEOUT=1
 
-alias gl='git log --decorate --oneline --graph'
 
 man() {
     env \
