@@ -4,12 +4,22 @@ execute pathogen#infect()
 execute pathogen#helptags()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusbar
-set laststatus=2 	" always display statusline
+set laststatus=2 			" always display statusline
+set showcmd             		" show command in bottom bar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bufferline
+let g:bufferline_rotate = 2
+let g:bufferline_echo = 0
+autocmd VimEnter *  let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
+" The function refresh_status() returns an empty string and only exists to
+" populate some global variables.  Since it is inside an %{} block, the
+" variables will get updated whenever the statusline needs to be drawn.
+" get_status_string() creates a string which references these variables.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype indent on      " load filetype-specific indent files
 match ErrorMsg '\s\+$' 	" hightlight whitespace
 set number              " show line numbers
 set relativenumber 	" use relative line numbers instead of absolute
-set showcmd             " show command in bottom bar
-filetype indent on      " load filetype-specific indent files
 set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
@@ -38,7 +48,7 @@ filetype plugin on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nvim
 " escape from terminal
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 if !has('nvim')
 	set ttymouse=xterm2
@@ -51,12 +61,9 @@ map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>n :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline configs
-let g:lightline = {
-      \ 'colorscheme': 'wombat'
-      \ }
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bufferline
- let g:bufferline_rotate = 2
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat'
+      "\ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer nav
 nnoremap <Leader>l :ls<CR>
@@ -85,6 +92,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 0
+" By default the testing commands run asynchronously in the background and display results with go#jobcontrol#Statusline(). To make them run in a new terminal
+let g:go_term_enabled = 1
 
 nnoremap <Leader>c :GoErrCheck<CR>
 nnoremap <Leader>a :GoAlternate<CR>
