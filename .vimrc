@@ -4,12 +4,22 @@ execute pathogen#infect()
 execute pathogen#helptags()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusbar
-set laststatus=2 	" always display statusline
+set laststatus=2 			" always display statusline
+set showcmd             		" show command in bottom bar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bufferline
+let g:bufferline_rotate = 2
+let g:bufferline_echo = 0
+autocmd VimEnter *  let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
+" The function refresh_status() returns an empty string and only exists to
+" populate some global variables.  Since it is inside an %{} block, the
+" variables will get updated whenever the statusline needs to be drawn.
+" get_status_string() creates a string which references these variables.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype indent on      " load filetype-specific indent files
 match ErrorMsg '\s\+$' 	" hightlight whitespace
 set number              " show line numbers
 set relativenumber 	" use relative line numbers instead of absolute
-set showcmd             " show command in bottom bar
-filetype indent on      " load filetype-specific indent files
 set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
@@ -51,12 +61,9 @@ map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>n :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline configs
-let g:lightline = {
-      \ 'colorscheme': 'wombat'
-      \ }
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bufferline
- let g:bufferline_rotate = 2
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat'
+      "\ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer nav
 nnoremap <Leader>l :ls<CR>
