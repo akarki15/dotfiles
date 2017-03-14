@@ -48,7 +48,7 @@ filetype plugin on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nvim
 " escape from terminal
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 if !has('nvim')
 	set ttymouse=xterm2
@@ -92,6 +92,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 0
+" By default the testing commands run asynchronously in the background and display results with go#jobcontrol#Statusline(). To make them run in a new terminal
+let g:go_term_enabled = 1
 
 nnoremap <Leader>c :GoErrCheck<CR>
 nnoremap <Leader>a :GoAlternate<CR>

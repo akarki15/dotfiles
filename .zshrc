@@ -95,7 +95,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias 'ls'='ls -AF -G'
-alias 'git st'='git status'
 
 alias 'cls'='clear'
 
@@ -155,7 +154,7 @@ alias ga='git add'
 alias gd='git diff --word-diff'
 alias gdc='git diff --word-diff --cached'
 alias gl='git log --decorate --oneline --graph --color=always'
-alias glf='watch --color git log --decorate --oneline --graph --color=always'
+alias wgl='watch --color git log --decorate --oneline --graph --color=always'
 
 alias refresh_db="$GOPATH/../script/yml2env.sh $GOPATH/bin/pgtos3cmd -action=restore"
 alias pg='pgcli gillnet_prod'
