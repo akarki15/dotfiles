@@ -4,7 +4,7 @@
 export PATH="$PATH:$HOME/.rvm/bin"
 # gillnet_repo settings
 export GOPATH="$HOME/gillnet_repo/go"
-#export GOBIN="$GOPATH/bin"
+export GOBIN="$GOPATH/bin"
 export PATH="$(go env GOROOT)/bin:$GOPATH/bin:$PATH"
 export PATH="$(go env GOTOOLDIR):$PATH"
 export DOCKER_HOST='tcp://localhost:2375'
@@ -20,7 +20,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="tjkirch"
+ ZSH_THEME="tjkirch"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -151,8 +151,8 @@ alias gb='git branch'
 alias gs='git status'
 alias gc='git checkout'
 alias ga='git add'
-alias gd='git diff --word-diff'
-alias gdc='git diff --word-diff --cached'
+alias gd='git diff '
+alias gdc='git diff --cached'
 alias gl='git log --decorate --oneline --graph --color=always'
 alias wgl='watch --color git log --decorate --oneline --graph --color=always'
 
@@ -186,3 +186,6 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+# rust specific
+export PATH="$HOME/.cargo/bin:$PATH"
