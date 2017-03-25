@@ -1,16 +1,30 @@
-" Bundle manager
-" pathogen settings. Don't exactly know what it is doing. Just copied it from http://vimawesome.com/plugin/syntastic#settings
-execute pathogen#infect()
-execute pathogen#helptags()
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'https://github.com/scrooloose/nerdtree'
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'https://github.com/scrooloose/nerdcommenter'
+Plug 'https://github.com/bling/vim-bufferline'
+Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/kien/ctrlp.vim'
+Plug 'https://github.com/itchyny/lightline.vim'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" Initialize plugin system
+call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusbar
 set laststatus=2 			" always display statusline
-set showcmd             		" show command in bottom bar
+"set showcmd             		" show command in bottom bar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bufferline
 let g:bufferline_rotate = 2
-let g:bufferline_echo = 0
-autocmd VimEnter *  let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
+"let g:bufferline_echo = 0
+"autocmd VimEnter *  let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
 " The function refresh_status() returns an empty string and only exists to
 " populate some global variables.  Since it is inside an %{} block, the
 " variables will get updated whenever the statusline needs to be drawn.
@@ -42,6 +56,8 @@ set splitright
 
 " ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " Nerdcommenter
 filetype plugin on
@@ -49,7 +65,6 @@ filetype plugin on
 " nvim
 " escape from terminal
 " tnoremap <Esc> <C-\><C-n>
-
 if !has('nvim')
 	set ttymouse=xterm2
 endif
