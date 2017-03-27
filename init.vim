@@ -13,6 +13,7 @@ Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'https://github.com/tpope/vim-surround'
 
 " Initialize plugin system
 call plug#end()
