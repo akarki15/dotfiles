@@ -8,6 +8,7 @@ export GOBIN="$GOPATH/bin"
 export PATH="$(go env GOROOT)/bin:$GOPATH/bin:$PATH"
 export PATH="$(go env GOTOOLDIR):$PATH"
 export DOCKER_HOST='tcp://localhost:2375'
+export AWS_DEFAULT_REGION=us-east-1
 
 # psql binary
 PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin
@@ -72,12 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -93,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# show timestamp with history
 alias 'ls'='ls -AF -G'
 
 alias 'cls'='clear'

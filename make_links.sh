@@ -3,7 +3,7 @@
 # If the dotfile is already present, backs it up
 # One time operation
 
-DEST_DIR=$HOME
+DEST_DIR=$HOME/.config/nvim
 BACKUP_DIR=$HOME/data/backups
 
 if [ -d $BACKUP_DIR ]; then

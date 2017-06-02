@@ -11,9 +11,16 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/kien/ctrlp.vim'
 Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-rhubarb'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'https://github.com/tpope/vim-surround'
+
+" Rust-specific
+Plug 'sebastianmarkow/deoplete-rust'
+Plug 'rust-lang/rust.vim'
+let g:deoplete#sources#rust#racer_binary='/Users/aashishkarki/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/Users/aashishkarki/rust/rust-source/rust/src'
 
 " Initialize plugin system
 call plug#end()
@@ -39,13 +46,14 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 syntax on
+highlight Comment cterm=italic " italicize comments
 inoremap jk <esc>	" jk is escape
 set mouse=a
 filetype plugin on
 let mapleader=","	" Set leader
 set clipboard=unnamed 	" Mac clipboard sharing
 set fillchars+=vert:\ 	" Remove | from vertical divider
-
+highlight Pmenu ctermbg=238 gui=bold " Autocompletion color
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
@@ -132,3 +140,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>i <Plug>(go-info)
 " Rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
+
+" gitgutter
+nmap <Leader>hn <Plug>GitGutterNextHunk
+nmap <Leader>hp <Plug>GitGutterPrevHunk
