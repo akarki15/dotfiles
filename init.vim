@@ -85,9 +85,28 @@ map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>n :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline configs
-"let g:lightline = {
-      "\ 'colorscheme': 'wombat'
-      "\ }
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+	let name = ""
+	let subs = split(expand('%'), "/") 
+	let i = 1
+	for s in subs
+		let parent = name
+		if  i == len(subs)
+			let name = parent . '/' . s
+		elseif i == 1
+			let name = s
+		else
+			let name = parent . '/' . strpart(s, 0, 2)
+		endif
+		let i += 1
+	endfor
+  return name
+endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer nav
 nnoremap <Leader>l :ls<CR>
