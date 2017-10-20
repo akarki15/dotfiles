@@ -1,15 +1,15 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'https://github.com/scrooloose/nerdtree'
+"c styles
+set tabstop=4 shiftwidth=4 expandtab
+
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
-Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/scrooloose/nerdcommenter'
-Plug 'https://github.com/bling/vim-bufferline'
+"Plug 'https://github.com/bling/vim-bufferline'
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/kien/ctrlp.vim'
-Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-rhubarb'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -26,19 +26,9 @@ let g:deoplete#sources#rust#rust_source_path='/Users/aashishkarki/rust/rust-sour
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusbar
-set laststatus=2 			" always display statusline
+set laststatus=2                " always show statusbar
 "set showcmd             		" show command in bottom bar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bufferline
-let g:bufferline_rotate = 2
-"let g:bufferline_echo = 0
-"autocmd VimEnter *  let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
-" The function refresh_status() returns an empty string and only exists to
-" populate some global variables.  Since it is inside an %{} block, the
-" variables will get updated whenever the statusline needs to be drawn.
-" get_status_string() creates a string which references these variables.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype indent on      " load filetype-specific indent files
 match ErrorMsg '\s\+$' 	" hightlight whitespace
 set number              " show line numbers
 set relativenumber 	" use relative line numbers instead of absolute
@@ -47,9 +37,6 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 syntax on
 highlight Comment cterm=italic " italicize comments
-inoremap jk <esc>	" jk is escape
-set mouse=a
-filetype plugin on
 let mapleader=","	" Set leader
 set clipboard=unnamed 	" Mac clipboard sharing
 set fillchars+=vert:\ 	" Remove | from vertical divider
@@ -67,47 +54,16 @@ set splitright
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 
 " Nerdcommenter
 filetype plugin on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nvim
-" escape from terminal
-" tnoremap <Esc> <C-\><C-n>
-if !has('nvim')
-	set ttymouse=xterm2
-endif
+" Explorer
+let g:netrw_banner = 0
+nnoremap <Leader>n :Ex<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree Shortcut
-map <C-n> :NERDTreeToggle<CR>
 
-" Open current file in nerdtree
-nmap <Leader>n :NERDTreeFind<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Lightline configs
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename'
-      \ }
-      \ }
-function! LightLineFilename()
-	let name = ""
-	let subs = split(expand('%'), "/") 
-	let i = 1
-	for s in subs
-		let parent = name
-		if  i == len(subs)
-			let name = parent . '/' . s
-		elseif i == 1
-			let name = s
-		else
-			let name = parent . '/' . strpart(s, 0, 2)
-		endif
-		let i += 1
-	endfor
-  return name
-endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer nav
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>

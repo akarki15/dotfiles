@@ -99,8 +99,6 @@ alias 'int'=intTest
 alias 'got'=gotest
 alias 'last'='echo $?'
 
-alias 'moo'='fortune -s computers | cowsay'
-
 agHistory(){
 	if [ ! -z "$1" ]
 	then
@@ -158,19 +156,7 @@ alias cwtcmd='$GOPATH/../script/yml2env.sh cwtcmd'
 
 alias vi='nvim'
 
-# alias tl='tmux list-sessions'
-# alias ta=tmuxAttachFunc
-# // attaches to a tmux session numbered given param
-# tmuxAttachFunc(){
-# 	tmux attach-session -t $1
-# }
-
-# Vi mode http://dougblack.io/words/zsh-vi-mode.html
-# bindkey -v
-# bindkey '^R' history-incremental-search-backward
-# export KEYTIMEOUT=1
-
-
+# colored man pages
 man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
