@@ -170,3 +170,5 @@ man() {
 
 # rust specific
 export PATH="$HOME/.cargo/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
