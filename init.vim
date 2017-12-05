@@ -1,15 +1,12 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 
-"c styles
-set tabstop=4 shiftwidth=4 expandtab
-
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'https://github.com/scrooloose/nerdcommenter'
-"Plug 'https://github.com/bling/vim-bufferline'
 Plug 'https://github.com/airblade/vim-gitgutter'
-Plug 'https://github.com/kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/tpope/vim-rhubarb'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -27,7 +24,6 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusbar
 set laststatus=2                " always show statusbar
-"set showcmd             		" show command in bottom bar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 match ErrorMsg '\s\+$' 	" hightlight whitespace
 set number              " show line numbers
@@ -40,22 +36,21 @@ highlight Comment cterm=italic " italicize comments
 let mapleader=","	" Set leader
 set clipboard=unnamed 	" Mac clipboard sharing
 set fillchars+=vert:\ 	" Remove | from vertical divider
-highlight Pmenu ctermbg=238 gui=bold " Autocompletion color
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-set splitbelow
-set splitright
-
-" ctrlp
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Solarized stuff
+let g:solarized_termtrans = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 1
-
+" disable the preview window feature.
+set completeopt-=preview
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdcommenter
 filetype plugin on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -63,7 +58,10 @@ filetype plugin on
 let g:netrw_banner = 0
 nnoremap <Leader>n :Ex<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" FZF
+nnoremap <Leader>p :Buffers<CR>
+map <c-p> :FZF<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer nav
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
@@ -80,7 +78,9 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 nnoremap <Leader>d :bd<CR>
-set hidden 	" Set buffers hidden so that I can switch to another buffer without vim yelling at me
+" Set buffers hidden so that I can switch to another buffer without vim
+" yelling at me
+set hidden
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Golang
 let g:go_fmt_command = "goimports"
@@ -91,19 +91,20 @@ let g:go_highlight_operators = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 0
-" By default the testing commands run asynchronously in the background and display results with go#jobcontrol#Statusline(). To make them run in a new terminal
+" By default the testing commands run asynchronously in the background and
+" display results with go#jobcontrol#Statusline(). To make them run in a new
+" terminal
 let g:go_term_enabled = 1
 
 nnoremap <Leader>c :GoErrCheck<CR>
 nnoremap <Leader>a :GoAlternate<CR>
-nnoremap <Leader>y :GoImports<CR>
 nnoremap <Leader>t :GoTestFunc<CR>
-nnoremap <Leader>p :CtrlPBuffer<CR>
 nnoremap <Leader>i :GoInfo<CR>
 
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-" Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
+" Open the relevant Godoc for the word under the cursor with <leader>gd or
+" open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)A
 
@@ -116,6 +117,6 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 " Rename the identifier under the cursor to a new name
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
-" gitgutter
-nmap <Leader>hn <Plug>GitGutterNextHunk
-nmap <Leader>hp <Plug>GitGutterPrevHunk
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" snippets
+iab Test_ func Test_ (t *testing.T){<CR>}
