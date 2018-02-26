@@ -32,7 +32,8 @@ set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 syntax on
-highlight Comment cterm=italic " italicize comments
+set wrap! 		" turn off wrapping
+"highlight Comment cterm=italic " italicize comments
 let mapleader=","	" Set leader
 set clipboard=unnamed 	" Mac clipboard sharing
 set fillchars+=vert:\ 	" Remove | from vertical divider
@@ -42,8 +43,6 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-" Solarized stuff
-let g:solarized_termtrans = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -120,3 +119,5 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippets
 iab Test_ func Test_ (t *testing.T){<CR>}
+iab tRun testCases := []struct{<CR>name string<CR>}{<CR>{},<CR>}<CR> for _, tc := range testCases{<CR>t.Run(tc.name, func(t *testing.T){<CR>})<CR>}
+iab ifer if err != nil {<CR> return err<CR>}<CR>
